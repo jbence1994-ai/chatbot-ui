@@ -11,7 +11,7 @@ const App = () => {
   }, [chatbotName]);
 
   return (
-    <main className="p-4 h-screen w-full">
+    <main className="p-12 h-screen w-full">
       <Chatbot />
     </main>
   );
