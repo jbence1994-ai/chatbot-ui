@@ -37,7 +37,7 @@ const ChatInput = ({ onSubmit }: Props) => {
           validate: (data) => data.trim().length > 0,
         })}
         className="w-full border-0 focus:outline-0 resize-none"
-        placeholder={appConfig.promptPlaceholder}
+        placeholder={appConfig.chatbotPromptWindowPlaceholder}
         maxLength={1000}
         autoFocus
       />

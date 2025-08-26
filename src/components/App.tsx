@@ -18,7 +18,7 @@ const App = () => {
         <header className="p-4">
           <nav className="flex items-center justify-between">
             <span className="text-2xl font-bold tracking-wide text-gray-900 dark:text-gray-200">
-              {appConfig.chatbotName}
+              {appConfig.chatbotNameAcronym}
             </span>
             <ModeToggle />
           </nav>
