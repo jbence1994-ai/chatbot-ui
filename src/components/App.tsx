@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import Chatbot from '@/components/chatbot/Chatbot.tsx';
+import Chatbot from '@/components/chat/Chatbot.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
 const App = () => {
