@@ -19,7 +19,7 @@ Run project locally
 bun install
 ```
 
-Be sure to copy `.env.example` to `.env` and update it with your local settings parameters before running the
+Be sure to copy `.env.example` to `.env.local` and update it with your local settings parameters before running the
 application.
 
 ### Starting application with npm:
