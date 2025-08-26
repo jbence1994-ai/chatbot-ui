@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
 import Chatbot from '@/components/chat/Chatbot.tsx';
-import { ModeToggle } from '@/components/mode-toggle.tsx';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ModeToggle } from '@/components/ui/mode-toggle.tsx';
+import { ThemeProvider } from '@/components/ui/theme-provider.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
 const App = () => {
@@ -14,14 +14,19 @@ const App = () => {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <header className="p-2">
-        <nav>
-          <ModeToggle />
-        </nav>
-      </header>
-      <main className="p-2 h-screen w-full">
-        <Chatbot />
-      </main>
+      <div className="flex flex-col h-screen">
+        <header className="p-4">
+          <nav className="flex items-center justify-between">
+            <span className="text-2xl font-bold tracking-wide text-gray-900 dark:text-gray-200">
+              {appConfig.chatbotName}
+            </span>
+            <ModeToggle />
+          </nav>
+        </header>
+        <main className="flex-1 p-12 w-full overflow-hidden">
+          <Chatbot />
+        </main>
+      </div>
     </ThemeProvider>
   );
 };
