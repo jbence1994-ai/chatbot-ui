@@ -16,15 +16,17 @@ const App = () => {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="flex flex-col h-screen">
         <header className="p-4">
-          <nav className="flex items-center justify-between">
+          <nav className="container flex justify-between items-center mx-auto px-4">
             <span className="text-2xl font-bold tracking-wide text-gray-900 dark:text-gray-200">
               {appConfig.chatbotNameAcronym}
             </span>
             <ModeToggle />
           </nav>
         </header>
-        <main className="flex-1 p-12 w-full overflow-hidden">
-          <Chatbot />
+        <main className="flex-1 p-4 sm:p-8 w-full overflow-hidden">
+          <div className="max-w-screen-lg mx-auto w-full h-full flex flex-col">
+            <Chatbot />
+          </div>
         </main>
       </div>
     </ThemeProvider>
