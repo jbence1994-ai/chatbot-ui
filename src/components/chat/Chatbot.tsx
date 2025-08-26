@@ -37,7 +37,7 @@ const Chatbot = () => {
       ]);
     } catch (error) {
       console.error(error);
-      setError('Something went wrong. Please try again later');
+      setError('Something went wrong. Please try again later.');
     } finally {
       setIsChatBotTyping(false);
     }
