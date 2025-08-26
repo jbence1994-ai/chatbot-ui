@@ -11,7 +11,7 @@ const appConfig: AppConfig = {
   chatbotNameAcronym: import.meta.env.VITE_CHATBOT_NAME_ACRONYM,
   chatbotUrl: import.meta.env.VITE_CHATBOT_URL,
   chatbotPromptWindowPlaceholder: import.meta.env
-    .VITE_CHATBBOT_PROMPT_WINDOW_PLACEHOLDER,
+    .VITE_CHATBOT_PROMPT_WINDOW_PLACEHOLDER,
   chatbotTypingIndicatorSymbol: import.meta.env
     .VITE_CHATBOT_TYPING_INDICATOR_SYMBOL,
 };
