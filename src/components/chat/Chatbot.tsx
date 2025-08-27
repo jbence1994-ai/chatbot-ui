@@ -4,9 +4,12 @@ import axios from 'axios';
 
 import notificationSound from '@/assets/sounds/notification.mp3';
 import popSound from '@/assets/sounds/pop.mp3';
-import ChatInput, { type ChatFormData } from '@/components/chat/ChatInput.tsx';
-import ChatMessages, { type Message } from '@/components/chat/ChatMessages.tsx';
-import TypingIndicator from '@/components/chat/TypingIndicator.tsx';
+import MessagesPanel, {
+  type ChatMessage,
+} from '@/components/chat/MessagesPanel.tsx';
+import PromptWindow, {
+  type PromptWindowData,
+} from '@/components/chat/PromptWindow.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
 const popAudio = new Audio(popSound);
@@ -20,16 +23,16 @@ type ChatResponse = {
 };
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [isChatBotTyping, setIsChatBotTyping] = useState(false);
   const [error, setError] = useState('');
   const conversationId = useRef(crypto.randomUUID());
 
-  const onSubmit = async ({ prompt }: ChatFormData) => {
+  const onSubmit = async ({ prompt }: PromptWindowData) => {
     try {
-      setMessages((previousMessages) => [
-        ...previousMessages,
-        { content: prompt, role: 'user' },
+      setChatMessages((previousChatMessages) => [
+        ...previousChatMessages,
+        { content: prompt, type: 'user' },
       ]);
       setIsChatBotTyping(true);
       setError('');
@@ -40,9 +43,9 @@ const Chatbot = () => {
         conversationId: conversationId.current,
       });
 
-      setMessages((previousMessages) => [
-        ...previousMessages,
-        { content: data.message, role: 'chatbot' },
+      setChatMessages((previousChatMessages) => [
+        ...previousChatMessages,
+        { content: data.message, type: 'chatbot' },
       ]);
     } catch (error) {
       console.error(error);
@@ -56,11 +59,15 @@ const Chatbot = () => {
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-col flex-1 gap-3 mb-10 overflow-y-auto hide-scrollbar">
-        <ChatMessages messages={messages} />
-        {isChatBotTyping && <TypingIndicator />}
+        <MessagesPanel chatMessages={chatMessages} />
+        {isChatBotTyping && (
+          <div className="text-3xl animate-pulse">
+            {appConfig.chatbotTypingIndicatorSymbol}
+          </div>
+        )}
         {error && <p className="text-red-500">{error}</p>}
       </div>
-      <ChatInput onSubmit={onSubmit} />
+      <PromptWindow onSubmit={onSubmit} />
     </div>
   );
 };
