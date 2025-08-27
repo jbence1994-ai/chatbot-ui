@@ -5,13 +5,14 @@ import { FaArrowUp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
-export type ChatFormData = { prompt: string };
+export type PromptWindowData = { prompt: string };
 
 interface Props {
-  onSubmit: (data: ChatFormData) => void;
+  onSubmit: (data: PromptWindowData) => void;
 }
-const ChatInput = ({ onSubmit }: Props) => {
-  const { register, handleSubmit, reset, formState } = useForm<ChatFormData>();
+const PromptWindow = ({ onSubmit }: Props) => {
+  const { register, handleSubmit, reset, formState } =
+    useForm<PromptWindowData>();
 
   const submit = handleSubmit((data) => {
     reset({ prompt: '' });
@@ -48,4 +49,4 @@ const ChatInput = ({ onSubmit }: Props) => {
   );
 };
 
-export default ChatInput;
+export default PromptWindow;

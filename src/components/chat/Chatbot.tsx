@@ -4,10 +4,12 @@ import axios from 'axios';
 
 import notificationSound from '@/assets/sounds/notification.mp3';
 import popSound from '@/assets/sounds/pop.mp3';
-import ChatInput, { type ChatFormData } from '@/components/chat/ChatInput.tsx';
 import ChatMessages, {
   type ChatMessage,
 } from '@/components/chat/ChatMessages.tsx';
+import PromptWindow, {
+  type PromptWindowData,
+} from '@/components/chat/PromptWindow.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
 const popAudio = new Audio(popSound);
@@ -26,7 +28,7 @@ const Chatbot = () => {
   const [error, setError] = useState('');
   const conversationId = useRef(crypto.randomUUID());
 
-  const onSubmit = async ({ prompt }: ChatFormData) => {
+  const onSubmit = async ({ prompt }: PromptWindowData) => {
     try {
       setChatMessages((previousChatMessages) => [
         ...previousChatMessages,
@@ -65,7 +67,7 @@ const Chatbot = () => {
         )}
         {error && <p className="text-red-500">{error}</p>}
       </div>
-      <ChatInput onSubmit={onSubmit} />
+      <PromptWindow onSubmit={onSubmit} />
     </div>
   );
 };
