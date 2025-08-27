@@ -30,11 +30,11 @@ const ChatMessages = ({ messages }: Props) => {
       {messages.map((message, index) => (
         <div
           key={index}
-          className={
+          className={`${
             message.role === 'user'
               ? 'px-3 py-1 rounded-xl bg-gray-400 text-white dark:bg-gray-500 self-end'
               : 'text-gray-900 dark:text-gray-200 self-start'
-          }
+          } max-w-md text-justify`}
           onCopy={onCopyMessage}
           ref={index === messages.length - 1 ? lastMessageRef : null}
         >
