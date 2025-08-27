@@ -44,11 +44,11 @@ const Chatbot = () => {
         ...previousMessages,
         { content: data.message, role: 'chatbot' },
       ]);
-      await notificationAudio.play();
     } catch (error) {
       console.error(error);
       setError('Something went wrong. Please try again later.');
     } finally {
+      await notificationAudio.play();
       setIsChatBotTyping(false);
     }
   };
