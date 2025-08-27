@@ -4,9 +4,9 @@ import axios from 'axios';
 
 import notificationSound from '@/assets/sounds/notification.mp3';
 import popSound from '@/assets/sounds/pop.mp3';
-import ChatMessages, {
+import MessagesPanel, {
   type ChatMessage,
-} from '@/components/chat/ChatMessages.tsx';
+} from '@/components/chat/MessagesPanel.tsx';
 import PromptWindow, {
   type PromptWindowData,
 } from '@/components/chat/PromptWindow.tsx';
@@ -59,7 +59,7 @@ const Chatbot = () => {
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-col flex-1 gap-3 mb-10 overflow-y-auto hide-scrollbar">
-        <ChatMessages chatMessages={chatMessages} />
+        <MessagesPanel chatMessages={chatMessages} />
         {isChatBotTyping && (
           <div className="text-3xl animate-pulse">
             {appConfig.chatbotTypingIndicatorSymbol}

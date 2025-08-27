@@ -10,7 +10,7 @@ interface Props {
   chatMessages: ChatMessage[];
 }
 
-const ChatMessages = ({ chatMessages }: Props) => {
+const MessagesPanel = ({ chatMessages }: Props) => {
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -45,4 +45,4 @@ const ChatMessages = ({ chatMessages }: Props) => {
   );
 };
 
-export default ChatMessages;
+export default MessagesPanel;
