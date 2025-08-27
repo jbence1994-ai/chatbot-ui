@@ -8,7 +8,6 @@ import ChatInput, { type ChatFormData } from '@/components/chat/ChatInput.tsx';
 import ChatMessages, {
   type ChatMessage,
 } from '@/components/chat/ChatMessages.tsx';
-import TypingIndicator from '@/components/chat/TypingIndicator.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
 const popAudio = new Audio(popSound);
@@ -59,7 +58,11 @@ const Chatbot = () => {
     <div className="flex flex-col h-full">
       <div className="flex flex-col flex-1 gap-3 mb-10 overflow-y-auto hide-scrollbar">
         <ChatMessages chatMessages={chatMessages} />
-        {isChatBotTyping && <TypingIndicator />}
+        {isChatBotTyping && (
+          <div className="text-3xl animate-pulse">
+            {appConfig.chatbotTypingIndicatorSymbol}
+          </div>
+        )}
         {error && <p className="text-red-500">{error}</p>}
       </div>
       <ChatInput onSubmit={onSubmit} />
