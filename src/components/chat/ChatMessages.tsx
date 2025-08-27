@@ -1,21 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-export type Message = {
+export type ChatMessage = {
   content: string;
-  role: 'user' | 'chatbot';
+  type: 'user' | 'chatbot';
 };
 
 interface Props {
-  messages: Message[];
+  chatMessages: ChatMessage[];
 }
 
-const ChatMessages = ({ messages }: Props) => {
+const ChatMessages = ({ chatMessages }: Props) => {
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [chatMessages]);
 
   const onCopyMessage = (e: React.ClipboardEvent) => {
     const selection = window.getSelection()?.toString().trim();
@@ -27,18 +27,18 @@ const ChatMessages = ({ messages }: Props) => {
 
   return (
     <div className="flex flex-col gap-3">
-      {messages.map((message, index) => (
+      {chatMessages.map((chatMessage, index) => (
         <div
           key={index}
           className={`${
-            message.role === 'user'
+            chatMessage.type === 'user'
               ? 'px-3 py-1 rounded-xl bg-gray-400 text-white dark:bg-gray-500 self-end'
               : 'text-gray-900 dark:text-gray-200 self-start'
           } max-w-md text-justify`}
           onCopy={onCopyMessage}
-          ref={index === messages.length - 1 ? lastMessageRef : null}
+          ref={index === chatMessages.length - 1 ? lastMessageRef : null}
         >
-          <ReactMarkdown>{message.content}</ReactMarkdown>
+          <ReactMarkdown>{chatMessage.content}</ReactMarkdown>
         </div>
       ))}
     </div>
