@@ -10,6 +10,7 @@ import MessagesPanel, {
 import PromptWindow, {
   type PromptWindowData,
 } from '@/components/chat/PromptWindow.tsx';
+import { Skeleton } from '@/components/ui/skeleton.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
 const popAudio = new Audio(popSound);
@@ -61,8 +62,12 @@ const Chatbot = () => {
       <div className="flex flex-col flex-1 gap-3 mb-10 overflow-y-auto hide-scrollbar">
         <MessagesPanel chatMessages={chatMessages} />
         {isChatBotTyping && (
-          <div className="text-3xl animate-pulse">
-            {appConfig.chatbotTypingIndicatorSymbol}
+          <div className="flex items-start gap-2">
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[180px]" />
+              <Skeleton className="h-4 w-[140px]" />
+            </div>
           </div>
         )}
         {error && <p className="text-red-500">{error}</p>}
