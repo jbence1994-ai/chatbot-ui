@@ -4,13 +4,13 @@ import axios from 'axios';
 
 import notificationSound from '@/assets/sounds/notification.mp3';
 import popSound from '@/assets/sounds/pop.mp3';
+import MessageSkeleton from '@/components/chat/MessageSkeleton.tsx';
 import MessagesPanel, {
   type ChatMessage,
 } from '@/components/chat/MessagesPanel.tsx';
 import PromptWindow, {
   type PromptWindowData,
 } from '@/components/chat/PromptWindow.tsx';
-import { Skeleton } from '@/components/ui/skeleton.tsx';
 import { appConfig } from '@/config/app.config.ts';
 
 const popAudio = new Audio(popSound);
@@ -61,15 +61,7 @@ const Chatbot = () => {
     <div className="flex flex-col h-full">
       <div className="flex flex-col flex-1 gap-3 mb-10 overflow-y-auto hide-scrollbar">
         <MessagesPanel chatMessages={chatMessages} />
-        {isChatBotTyping && (
-          <div className="flex items-start gap-2">
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[180px]" />
-              <Skeleton className="h-4 w-[140px]" />
-            </div>
-          </div>
-        )}
+        {isChatBotTyping && <MessageSkeleton />}
         {error && <p className="text-red-500">{error}</p>}
       </div>
       <PromptWindow onSubmit={onSubmit} />
