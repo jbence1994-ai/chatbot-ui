@@ -22,7 +22,7 @@ bun install
 Be sure to copy `.env.example` to `.env.local` and update it with your local settings parameters before running the
 application.
 
-### Starting application with npm:
+### Starting application with Bun:
 
 ```bash
 bun run dev
